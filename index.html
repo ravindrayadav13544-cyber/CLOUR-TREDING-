@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Colour Trading Practice</title>
+</head>
+<body style="background:black;color:white;text-align:center;">
+
+<h2>Colour Trading Practice</h2>
+
+<div id="balance">Balance: ₹10000</div>
+<h1 id="timer">30</h1>
+
+<button onclick="trade('green')">GREEN</button>
+<button onclick="trade('red')">RED</button>
+<button onclick="trade('violet')">VIOLET</button>
+
+<p id="result"></p>
+
+<script>
+let balance = 100000;
+let time = 30;
+let choice = "";
+
+function trade(c){
+  choice = c;
+  document.getElementById("result").innerText = "Wait...";
+}
+
+setInterval(()=>{
+  time--;
+  document.getElementById("timer").innerText = time;
+
+  if(time==0){
+    let colors=["green","red","violet"];
+    let result=colors[Math.floor(Math.random()*3)];
+
+    if(choice==result){
+      balance+=100;
+      document.getElementById("result").innerText="WIN 🎉 "+result;
+    }else{
+      balance-=100;
+      document.getElementById("result").innerText="LOSS ❌ "+result;
+    }
+
+    document.getElementById("balance").innerText="Balance: ₹"+balance;
+    time=30;
+    choice="";
+  }
+},1000);
+</script>
+
+</body>
+</html>
